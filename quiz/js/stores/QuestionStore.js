@@ -33,13 +33,12 @@ var _questions = [
 ];
 
 
-
 function setCurrentAnswer(text) {
   console.log('Setting current answer to:', text);
   _questions[_current_question_index].current_answer = text;
 }
 
-function calculateScore(questions) {
+function markQuiz(questions) {
   var result = [];
   for (let question of questions) {
     if (question.answer == question.current_answer) {
@@ -56,6 +55,18 @@ var QuestionStore = Flux.createStore(
     getCurrentQuestion: function() {
       return _questions[_current_question_index];
     },
+    getQuestionsCount: function() {
+      return _questions.size();
+    },
+    getQuestionNumber: function() {
+      return _current_question_index + 1;
+    },
+    isFirstQuestion: function() {
+      return _current_question_index === 0;
+    },
+    isLastQuestion: function() {
+      return _current_question_index === _questions.size() - 1
+    }
   },
   function(payload){
     var update_required = false;
@@ -81,8 +92,7 @@ var QuestionStore = Flux.createStore(
         update_required = true;
       }
     } else if (payload_action === 'SUBMIT') {
-      var result = calculateScore(_questions);
-      console.log(result);
+      var result = markQuiz(_questions);
       alert(result.join('\n'));
     }
 

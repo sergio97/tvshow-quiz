@@ -1,29 +1,26 @@
 var React = require('react');
-var QuestionActions = require('../actions/QuestionActions.jsx')
+var Pager = require('react-bootstrap/lib/Pager');
+var PageItem = require('react-bootstrap/lib/PageItem');
+
+var QuestionActions = require('../actions/QuestionActions')
+var QuestionStore = require('../stores/QuestionStore')
 
 
 var QuizPager = React.createClass({
   render: function() {
+    var prev_disabled = QuestionStore.isFirstQuestion();
+    console.log('prev_disabled', prev_disabled);
     return (
       <div>
-        <ul className="pager">
-          <li className="previous">
-            <a href="#" onClick={QuestionActions.prevQuestion}>&larr; Previous</a>
-          </li>
-          <li className="next">
-            <a href="#" onClick={QuestionActions.nextQuestion}>Next &rarr;</a>
-          </li>
-          <li className="">
-            <a href="#" onClick={QuestionActions.reset}>Clear Answer</a>
-          </li>
-          <li className="submit">
-            <a href="#" onClick={QuestionActions.submit}>Submit</a>
-          </li>
-        </ul>
+        <Pager>
+          <PageItem href="#" onClick={QuestionActions.prevQuestion}>&larr; Previous</PageItem>
+          <PageItem href="#" onClick={QuestionActions.reset}>Clear Answer</PageItem>
+          <PageItem href="#" onClick={QuestionActions.submit}>Finish</PageItem>
+          <PageItem href="#" onClick={QuestionActions.nextQuestion}>Next &rarr;</PageItem>
+        </Pager>
       </div>
     );
   }
 });
-
 
 module.exports = QuizPager;

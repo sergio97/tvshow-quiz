@@ -1,8 +1,8 @@
 var React = require('react');
 
-var QuestionStore = require('../stores/QuestionStore.jsx');
+var QuestionStore = require('../stores/QuestionStore');
 var QuizHeader = require('../components/QuizHeader.jsx')
-var QuestionBody = require('../components/QuestionBody.jsx')
+var MCSingleQuestion = require('../components/MCSingleQuestion.jsx')
 var QuizTrailer = require('../components/QuizTrailer.jsx')
 
 
@@ -15,7 +15,6 @@ var QuizRoot = React.createClass({
       };
   },
   storeDidChange: function() {
-      console.log('StoreDidChange()');
       this.setState({
         question: QuestionStore.getCurrentQuestion(),
       });
@@ -24,7 +23,7 @@ var QuizRoot = React.createClass({
     return (
       <div className="container">
         <QuizHeader />
-        <QuestionBody question_data={this.state.question} />
+        <MCSingleQuestion question_data={this.state.question} />
         <QuizTrailer />
       </div>
     );
