@@ -13,9 +13,8 @@ var MCAnswer = React.createClass({
     return (
       <div>
         <input type="checkbox"
-               name={this.props.text}
                checked={this.getChecked()}
-               onClick={this.onClickHandler} />
+               onChange={this.onClickHandler} />
         <label onClick={this.onClickHandler}> {this.props.text}</label>
       </div>
     );
