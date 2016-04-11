@@ -2,6 +2,7 @@ var React = require('react');
 
 var QuestionStore = require('../stores/QuestionStore');
 var QuizPager = require('./QuizPager.jsx');
+var QuizProgress = require('../components/QuizProgress.jsx');
 
 
 function getAnswerClass(answer_format) {
@@ -45,6 +46,10 @@ var QuestionBody = React.createClass({
         </p>
         {answer_component}
         <QuizPager />
+        <p>
+          &nbsp;
+        </p>
+        <QuizProgress />
       </div>
     );
   }

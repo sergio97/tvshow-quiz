@@ -51,6 +51,7 @@ function toggleAnswer(text) {
 function markQuiz(questions) {
   var result = [];
   for (let index in questions) {
+    index = parseInt(index); // Index is a string, really?
     let question = questions[index];
     let correct;
     if (question.current_answer !== undefined) {
@@ -62,12 +63,13 @@ function markQuiz(questions) {
     }
 
     console.log('correctness:', parseFloat(correct));
+    let display_index = index + 1;
     if (correct === 1) {
-      result.push('Answer ' + index + ' was correct!');
+      result.push('Answer ' + display_index + ' was correct!');
     } else if ( 0 < correct && correct < 1) {
-      result.push('Answer ' + index + ' was partially correct');
+      result.push('Answer ' + display_index + ' was partially correct');
     } else {
-      result.push('Answer ' + index + ' was wrong');
+      result.push('Answer ' + display_index + ' was wrong');
     }
   }
   return result;
@@ -99,7 +101,7 @@ var QuestionStore = Flux.createStore(
     getCurrentQuestion: function() {
       return _questions[_current_question_index];
     },
-    getQuestionsCount: function() {
+    getQuestionCount: function() {
       return _questions.length;
     },
     getQuestionNumber: function() {
