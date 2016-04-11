@@ -15,7 +15,7 @@ var MCAnswer = React.createClass({
       <div>
         <input type="radio"
                checked={this.getChecked()}
-               onClick={this.onClickHandler} />
+               onChange={this.onClickHandler} />
         <label onClick={this.onClickHandler}> {this.props.text}</label>
       </div>
     );
