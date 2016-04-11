@@ -1,20 +1,19 @@
 var React = require('react');
-var QuizPager = require('./QuizPager.jsx');
 var QuestionActions = require('../actions/QuestionActions');
 
 
 var MCAnswer = React.createClass({
-  onClickHandler: function() {
-    QuestionActions.setAnswer(this.props.text);
+  onClickHandler: function(...args) {
+    QuestionActions.toggleAnswer(this.props.text);
   },
   getChecked: function() {
-    // console.log("We're checking:", this.props.text, this.props.current_answer);
-    return this.props.text == this.props.current_answer;
+    return this.props.current_answers.indexOf(this.props.text) !== -1;
   },
   render: function() {
     return (
       <div>
-        <input type="radio"
+        <input type="checkbox"
+               name={this.props.text}
                checked={this.getChecked()}
                onClick={this.onClickHandler} />
         <label onClick={this.onClickHandler}> {this.props.text}</label>
@@ -23,29 +22,25 @@ var MCAnswer = React.createClass({
   }
 });
 
-var QuestionBody = React.createClass({
+var MCMultiAnswer = React.createClass({
   render: function() {
     var options = this.props.question_data.options;
-    var current_answer = this.props.question_data.current_answer;
+    var current_answers = this.props.question_data.current_answers;
 
     var option_components = options.map(function(option, index) {
       return (
           <MCAnswer key={index}
                     text={option.text}
-                    current_answer={current_answer} />
+                    current_answers={current_answers} />
       )
     });
 
     return (
       <div>
-        <p>
-          {this.props.question_data.text}
-        </p>
           {option_components}
-        <QuizPager />
       </div>
     );
   }
 });
 
-module.exports = QuestionBody
+module.exports = MCMultiAnswer

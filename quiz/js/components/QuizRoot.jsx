@@ -1,29 +1,22 @@
 var React = require('react');
 
-var QuestionStore = require('../stores/QuestionStore');
-var QuizHeader = require('../components/QuizHeader.jsx')
-var MCSingleQuestion = require('../components/MCSingleQuestion.jsx')
-var QuizTrailer = require('../components/QuizTrailer.jsx')
+var QuizHeader = require('../components/QuizHeader.jsx');
+var QuestionBody = require('../components/QuestionBody.jsx');
+var QuizTrailer = require('../components/QuizTrailer.jsx');
 
 
 var QuizRoot = React.createClass({
-  mixins: [QuestionStore.mixin],
   getInitialState: function(){
-      console.log('getInitialState()');
       return {
-        question: QuestionStore.getCurrentQuestion(),
+        quiz_started: true,
+        quiz_ended: false,
       };
-  },
-  storeDidChange: function() {
-      this.setState({
-        question: QuestionStore.getCurrentQuestion(),
-      });
   },
   render: function() {
     return (
       <div className="container">
         <QuizHeader />
-        <MCSingleQuestion question_data={this.state.question} />
+        <QuestionBody />
         <QuizTrailer />
       </div>
     );

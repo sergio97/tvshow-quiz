@@ -7,16 +7,44 @@ var QuestionStore = require('../stores/QuestionStore')
 
 
 var QuizPager = React.createClass({
+  onClickPrev: function() {
+    QuestionActions.prevQuestion();
+  },
+  onClickNext: function() {
+    QuestionActions.nextQuestion();
+  },
+  onClickReset: function() {
+    QuestionActions.reset();
+  },
+  onClickSubmit: function() {
+    QuestionActions.submit();
+  },
   render: function() {
-    var prev_disabled = QuestionStore.isFirstQuestion();
-    console.log('prev_disabled', prev_disabled);
+    var last_button;
+    if (QuestionStore.isLastQuestion()) {
+      last_button = (
+        <PageItem href="#"
+                  onClick={this.onClickSubmit}
+                  disabled={false}>Finish</PageItem>
+      );
+    } else {
+      last_button = (
+        <PageItem href="#"
+                  onClick={this.onClickNext}
+                  disabled={false}>Next &rarr;</PageItem>
+      );
+    }
+
     return (
       <div>
         <Pager>
-          <PageItem href="#" onClick={QuestionActions.prevQuestion}>&larr; Previous</PageItem>
-          <PageItem href="#" onClick={QuestionActions.reset}>Clear Answer</PageItem>
-          <PageItem href="#" onClick={QuestionActions.submit}>Finish</PageItem>
-          <PageItem href="#" onClick={QuestionActions.nextQuestion}>Next &rarr;</PageItem>
+          <PageItem href="#"
+                    onClick={this.onClickPrev}
+                    disabled={QuestionStore.isFirstQuestion()}>&larr; Previous</PageItem>
+          <PageItem href="#"
+                    onClick={this.onClickReset}
+                    disabled={false}>Clear Answer</PageItem>
+          {last_button}
         </Pager>
       </div>
     );

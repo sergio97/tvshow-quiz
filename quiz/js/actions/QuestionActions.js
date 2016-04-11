@@ -7,6 +7,12 @@ var QuestionActions = Flux.createActions({
         text: text
       }
     },
+    toggleAnswer: function(text){
+      return {
+        actionType: 'TOGGLE_ANSWER',
+        text: text
+      }
+    },
     nextQuestion: function() {
       return {
         actionType: 'NEXT_QUESTION',
