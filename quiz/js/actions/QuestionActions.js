@@ -1,6 +1,6 @@
-var Flux = require('../core/mcFly');
+var mcFly = require('../core/mcFly');
 
-var QuestionActions = Flux.createActions({
+var QuestionActions = mcFly.createActions({
     setAnswer: function(text){
       return {
         actionType: 'SET_ANSWER',
@@ -26,11 +26,6 @@ var QuestionActions = Flux.createActions({
     reset: function(){
       return {
         actionType: 'RESET',
-      }
-    },
-    submit: function(){
-      return {
-        actionType: 'SUBMIT',
       }
     },
 });

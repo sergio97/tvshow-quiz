@@ -11,5 +11,4 @@ var QuizHeader = React.createClass({
   }
 });
 
-
 module.exports = QuizHeader;

@@ -9,6 +9,9 @@ var QuizTrailer = React.createClass({
           &nbsp;
         </p>
         <p>
+          &nbsp;
+        </p>
+        <p>
           Created by <a href="http://www.sergiomartins.ca">Sergio Martins</a>
         </p>
       </div>

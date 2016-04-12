@@ -1,4 +1,4 @@
-var Flux = require('../core/mcFly');
+var mcFly = require('../core/mcFly');
 
 
 var _current_question_index = 0;
@@ -34,7 +34,6 @@ var _questions = [
 
 
 function setCurrentAnswer(text) {
-  console.log('Setting current answer to:', text);
   _questions[_current_question_index].current_answer = text;
 }
 
@@ -48,55 +47,7 @@ function toggleAnswer(text) {
   }
 }
 
-function markQuiz(questions) {
-  var result = [];
-  for (let index in questions) {
-    index = parseInt(index); // Index is a string, really?
-    let question = questions[index];
-    let correct;
-    if (question.current_answer !== undefined) {
-      correct = _markSingleQuestion(question);
-    } else if (question.current_answers !== undefined) {
-      correct = _markMultiQuestion(question);
-    } else {
-      throw "Unable to mark this question:" + question;
-    }
-
-    console.log('correctness:', parseFloat(correct));
-    let display_index = index + 1;
-    if (correct === 1) {
-      result.push('Answer ' + display_index + ' was correct!');
-    } else if ( 0 < correct && correct < 1) {
-      result.push('Answer ' + display_index + ' was partially correct');
-    } else {
-      result.push('Answer ' + display_index + ' was wrong');
-    }
-  }
-  return result;
-}
-
-function _markSingleQuestion(question) {
-  // console.log('Marking single question:', question);
-  if (question.answer == question.current_answer) {
-    return 1;
-  }
-  return 0;
-}
-
-function _markMultiQuestion(question) {
-  let result = 0;
-  let answers = question.answers;
-  for (let current_answer of question.current_answers) {
-    if (answers.indexOf(current_answer) !== -1) {
-      result += (1 / answers.length);
-    } else {
-      result -= (1 / answers.length);
-    }
-  }
-  return result;
-}
-
-var QuestionStore = Flux.createStore(
+var QuestionStore = mcFly.createStore(
   {
     getCurrentQuestion: function() {
       return _questions[_current_question_index];
@@ -112,7 +63,10 @@ var QuestionStore = Flux.createStore(
     },
     isLastQuestion: function() {
       return _current_question_index === _questions.length - 1;
-    }
+    },
+    getQuestionsForSubmit: function() {
+      return _questions;
+    },
   },
   function(payload){
     var update_required = false;
@@ -147,11 +101,7 @@ var QuestionStore = Flux.createStore(
         _current_question_index -= 1;
         update_required = true;
       }
-    } else if (payload_action === 'SUBMIT') {
-      var result = markQuiz(_questions);
-      alert(result.join('\n'));
     }
-
 
     if (update_required) {
       QuestionStore.emitChange();

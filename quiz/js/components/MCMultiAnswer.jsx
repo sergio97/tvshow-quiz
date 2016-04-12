@@ -3,7 +3,7 @@ var QuestionActions = require('../actions/QuestionActions');
 
 
 var MCAnswer = React.createClass({
-  onClickHandler: function(...args) {
+  onClickHandler: function() {
     QuestionActions.toggleAnswer(this.props.text);
   },
   getChecked: function() {

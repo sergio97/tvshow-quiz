@@ -4,6 +4,7 @@ var PageItem = require('react-bootstrap/lib/PageItem');
 
 var QuestionActions = require('../actions/QuestionActions')
 var QuestionStore = require('../stores/QuestionStore')
+var QuizActions = require('../actions/QuizActions');
 
 
 var QuizPager = React.createClass({
@@ -17,7 +18,7 @@ var QuizPager = React.createClass({
     QuestionActions.reset();
   },
   onClickSubmit: function() {
-    QuestionActions.submit();
+    QuizActions.submitQuiz(QuestionStore.getQuestionsForSubmit());
   },
   render: function() {
     var last_button;
