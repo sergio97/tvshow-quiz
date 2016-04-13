@@ -1,3 +1,17 @@
+const difficulty_score_map = {
+  1: 1.0,
+  2: 1.41,
+  3: 1.73,
+  4: 2.24,
+  5: 2.83,
+  6: 3.6,
+  7: 4.58,
+  8: 5.83,
+  9: 7.42,
+  10: 9.43,
+};
+const final_score_multiplier = 100;
+
 function _markSingleQuestion(question) {
   if (question.answer == question.current_answer) {
     return 1;
@@ -20,6 +34,7 @@ function _markMultiQuestion(question) {
 
 function gradeQuiz(questions) {
   var answers = [];
+  var total_score = 0;
   for (let index in questions) {
     index = parseInt(index); // Index is a string, really?
     let question = questions[index];
@@ -32,10 +47,14 @@ function gradeQuiz(questions) {
       throw "Unable to mark this question:" + question;
     }
 
-    console.log('correctness:', parseFloat(correct));
+    let difficulty_multiplier = difficulty_score_map[question.difficulty];
+    let weighted_score = Math.max(correct, 0) * difficulty_multiplier;
+    total_score += weighted_score;
+
+    // console.log('correctness:', parseFloat(correct));
     let display_index = index + 1;
     if (correct === 1) {
-      answers.push('Answer ' + display_index + ' was correct!');
+      answers.push('Answer ' + display_index + ' was correct');
     } else if ( 0 < correct && correct < 1) {
       answers.push('Answer ' + display_index + ' was partially correct');
     } else {
@@ -43,7 +62,10 @@ function gradeQuiz(questions) {
     }
   }
 
+  total_score *= final_score_multiplier;
+
   var result = {
+    score: total_score,
     answers: answers,
   }
 

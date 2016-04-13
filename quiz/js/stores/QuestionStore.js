@@ -14,6 +14,7 @@ var _questions = [
       {'text': '1729'},
     ],
     answers: ['2', '17'],
+    difficulty: 5,
     current_answers: [],
   },
   {
@@ -28,6 +29,7 @@ var _questions = [
       {'text': 'The Dog'},
     ],
     answer: 'The Dad',
+    difficulty: 2,
     current_answer: '',
   },
 ];

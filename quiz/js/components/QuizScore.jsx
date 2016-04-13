@@ -18,6 +18,8 @@ var QuizWelcome = React.createClass({
 
     return (
       <div>
+        <h4>Score:</h4>
+        <h2>{results.score}</h2>
         <p>
           &nbsp;
         </p>
