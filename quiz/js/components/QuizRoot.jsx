@@ -22,23 +22,27 @@ var QuizRoot = React.createClass({
     })
   },
   get_components_for_state: function(state) {
-    if (state === "init") {
+    if (state === 'init') {
       return (
         <QuizWelcome />
       );
-    } else if (state === "in-progress") {
+    } else if (state === 'loading') {
+      return (
+        <h2>Loading...</h2>
+      );
+    } else if (state === 'in-progress') {
       return (
         <div>
           <QuestionBody />
           <QuizTrailer />
         </div>
       );
-    } else if (state === "finished") {
+    } else if (state === 'finished') {
       return (
         <QuizScore />
       );
     } else {
-      throw "Invalid state: " + state;
+      throw 'Invalid state: ' + state;
     }
   },
   render: function() {

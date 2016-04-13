@@ -37,7 +37,9 @@ var QuestionBody = React.createClass({
     var question_data = this.state.question;
     var answer_format = question_data.answer_format;
     var answer_class = getAnswerClass(answer_format);
-    var answer_component = React.createElement(answer_class, {"question_data": question_data})
+    var answer_component = React.createElement(answer_class, {
+      'question_data': question_data
+    });
 
     return (
       <div>

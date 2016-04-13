@@ -44,7 +44,7 @@ function gradeQuiz(questions) {
     } else if (question.answer_format === 'mc_multi') {
       correct = _markMultiQuestion(question);
     } else {
-      throw "Unknown answer format:" + question.answer_format;
+      throw 'Unknown answer format:' + question.answer_format;
     }
 
     let difficulty = question.difficulty;
@@ -84,6 +84,6 @@ function gradeQuiz(questions) {
     score: total_score,
     answers: answers,
   };
-};
+}
 
 module.exports = {gradeQuiz: gradeQuiz};

@@ -1,38 +1,8 @@
 var mcFly = require('../core/mcFly');
 
 
-var _current_question_index = 0;
-var _questions = [
-  {
-    text: 'Which numbers are primary?',
-    hint: 'Remember: integers only!',
-    answer_format: 'mc_multi',
-    options: [
-      {'text': '2'},
-      {'text': '9'},
-      {'text': '17'},
-      {'text': '1729'},
-    ],
-    answers: ['2', '17'],
-    difficulty: 5,
-    current_answers: [],
-  },
-  {
-    text: 'Which character is a father',
-    hint: 'A father is a male who has offspring',
-    answer_format: 'mc_single',
-    options: [
-      {'text': 'The Mom'},
-      {'text': 'The Dad'},
-      {'text': 'The Daughter'},
-      {'text': 'The Son'},
-      {'text': 'The Dog'},
-    ],
-    answer: 'The Dad',
-    difficulty: 2,
-    current_answer: '',
-  },
-];
+var _current_question_index = null;
+var _questions = null;
 
 
 function setCurrentAnswer(text) {
@@ -73,7 +43,10 @@ var QuestionStore = mcFly.createStore(
   function(payload){
     var update_required = false;
     var payload_action = payload.actionType;
-    if (payload_action === 'SET_ANSWER') {
+    if (payload_action === 'INITIALIZE_QUESTIONS') {
+      _questions = payload.question_data;
+      _current_question_index = 0;
+    } else if (payload_action === 'SET_ANSWER') {
       setCurrentAnswer(payload.text);
       update_required = true;
     } else if (payload_action === 'RESET') {

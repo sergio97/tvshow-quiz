@@ -7,7 +7,8 @@ var QuizActions = require('../actions/QuizActions');
 
 var QuizWelcome = React.createClass({
   onClickHandler: function() {
-    QuizActions.startQuiz();
+    var config = {};
+    QuizActions.loadQuiz(config);
   },
   render: function() {
     return (
@@ -16,7 +17,7 @@ var QuizWelcome = React.createClass({
         <p>
           &nbsp;
         </p>
-        <Button bsStyle="success" onClick={this.onClickHandler}>started</Button>
+        <Button bsStyle="success" onClick={this.onClickHandler}>Start</Button>
       </div>
     );
   }

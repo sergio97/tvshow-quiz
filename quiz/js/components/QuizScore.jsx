@@ -4,7 +4,6 @@ var Button = require('react-bootstrap/lib/Button');
 var ListGroup = require('react-bootstrap/lib/ListGroup');
 var ListGroupItem = require('react-bootstrap/lib/ListGroupItem');
 
-var QuizGrader = require('../core/QuizGrader');
 var QuizStore = require('../stores/QuizStore');
 
 const correctness_style_map = {
@@ -16,6 +15,7 @@ const correctness_style_map = {
 var QuizWelcome = React.createClass({
   getInitialState: function() {
       return {
+          quiz_results: QuizStore.getQuizResults(),
           answers_visible: false,
       };
   },
@@ -25,9 +25,8 @@ var QuizWelcome = React.createClass({
     })
   },
   render: function() {
+    var results = this.state.quiz_results;
 
-    var question_data = QuizStore.getQuizQuestionsForMarking();
-    var results = QuizGrader.gradeQuiz(question_data);
     var answer_components = results.answers.map(function(answer, index){
       let style = correctness_style_map[answer.correctness];
       return (
@@ -42,21 +41,21 @@ var QuizWelcome = React.createClass({
     if (!this.state.answers_visible) {
       answers_section = (
         <div>
-        <p>
-          <Button onClick={this.toggleAnswersVisible}>
-            Show Details
-          </Button>
-        </p>
+          <p>
+            <Button onClick={this.toggleAnswersVisible}>
+              Show Details
+            </Button>
+          </p>
         </div>
       );
     } else {
       answers_section = (
         <div>
-        <p>
-          <Button onClick={this.toggleAnswersVisible}>
-            Hide Details
-          </Button>
-        </p>
+          <p>
+            <Button onClick={this.toggleAnswersVisible}>
+              Hide Details
+            </Button>
+          </p>
           <ListGroup>
             {answer_components}
           </ListGroup>
