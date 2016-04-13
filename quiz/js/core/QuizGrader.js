@@ -1,4 +1,4 @@
-const difficulty_score_map = {
+const difficulty_multiplier = {
   1: 1.0,
   2: 1.41,
   3: 1.73,
@@ -29,7 +29,7 @@ function _markMultiQuestion(question) {
       result -= (1 / answers.length);
     }
   }
-  return result;
+  return Math.max(result, 0);
 }
 
 function gradeQuiz(questions) {
@@ -39,37 +39,51 @@ function gradeQuiz(questions) {
     index = parseInt(index); // Index is a string, really?
     let question = questions[index];
     let correct;
-    if (question.current_answer !== undefined) {
+    if (question.answer_format === 'mc_single') {
       correct = _markSingleQuestion(question);
-    } else if (question.current_answers !== undefined) {
+    } else if (question.answer_format === 'mc_multi') {
       correct = _markMultiQuestion(question);
     } else {
-      throw "Unable to mark this question:" + question;
+      throw "Unknown answer format:" + question.answer_format;
     }
 
-    let difficulty_multiplier = difficulty_score_map[question.difficulty];
-    let weighted_score = Math.max(correct, 0) * difficulty_multiplier;
+    let difficulty = question.difficulty;
+    let weighted_score = correct * difficulty_multiplier[difficulty];
     total_score += weighted_score;
 
     // console.log('correctness:', parseFloat(correct));
     let display_index = index + 1;
     if (correct === 1) {
-      answers.push('Answer ' + display_index + ' was correct');
+      answers.push({
+        text: 'Answer ' + display_index + ' was correct',
+        correctness: 'correct',
+        difficulty: difficulty,
+        score: total_score,
+      });
     } else if ( 0 < correct && correct < 1) {
-      answers.push('Answer ' + display_index + ' was partially correct');
+      answers.push({
+        text: 'Answer ' + display_index + ' was partially correct',
+        correctness: 'partial',
+        difficulty: difficulty,
+        score: total_score,
+      });
     } else {
-      answers.push('Answer ' + display_index + ' was wrong');
+      answers.push({
+        text: 'Answer ' + display_index + ' was wrong',
+        correctness: 'incorrect',
+        difficulty: difficulty,
+        score: total_score,
+      });
     }
   }
 
   total_score *= final_score_multiplier;
+  total_score = parseInt(total_score);
 
-  var result = {
+  return {
     score: total_score,
     answers: answers,
-  }
-
-  return result;
+  };
 };
 
 module.exports = {gradeQuiz: gradeQuiz};
