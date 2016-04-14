@@ -16,7 +16,7 @@ var QuizTrailer = React.createClass({
         </p>
       </div>
     );
-  }
+  },
 });
 
 

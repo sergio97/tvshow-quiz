@@ -38,7 +38,7 @@ var QuestionBody = React.createClass({
     var answer_format = question_data.answer_format;
     var answer_class = getAnswerClass(answer_format);
     var answer_component = React.createElement(answer_class, {
-      'question_data': question_data
+      'question_data': question_data,
     });
 
     return (
@@ -54,7 +54,7 @@ var QuestionBody = React.createClass({
         <QuizProgress />
       </div>
     );
-  }
+  },
 });
 
 module.exports = QuestionBody;

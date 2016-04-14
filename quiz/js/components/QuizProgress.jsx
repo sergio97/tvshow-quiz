@@ -13,7 +13,7 @@ var QuizProgress = React.createClass({
     return (
       <ProgressBar now={percentage * 100} label={label} />
     );
-  }
+  },
 });
 
 module.exports = QuizProgress;

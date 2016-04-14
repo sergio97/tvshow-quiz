@@ -20,7 +20,7 @@ var QuizWelcome = React.createClass({
         <Button bsStyle="success" onClick={this.onClickHandler}>Start</Button>
       </div>
     );
-  }
+  },
 });
 
 

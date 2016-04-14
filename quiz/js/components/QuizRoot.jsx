@@ -13,12 +13,12 @@ var QuizRoot = React.createClass({
   mixins: [QuizStore.mixin],
   getInitialState: function() {
       return {
-        quiz_state: QuizStore.getQuizState()
+        quiz_state: QuizStore.getQuizState(),
       };
   },
   storeDidChange: function() {
     this.setState({
-      quiz_state: QuizStore.getQuizState()
+      quiz_state: QuizStore.getQuizState(),
     })
   },
   getComponentsForState: function(state) {
@@ -54,7 +54,7 @@ var QuizRoot = React.createClass({
         {components}
       </div>
     );
-  }
+  },
 });
 
 

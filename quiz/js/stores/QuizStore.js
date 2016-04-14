@@ -17,7 +17,7 @@ var QuizStore = mcFly.createStore(
     },
     getQuizResults: function() {
       return _quiz_results;
-    }
+    },
   },
   function(payload){
     var payload_action = payload.actionType;

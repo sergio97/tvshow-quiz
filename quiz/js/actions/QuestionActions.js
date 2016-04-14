@@ -10,13 +10,13 @@ var QuestionActions = mcFly.createActions({
     setAnswer: function(text){
       return {
         actionType: 'SET_ANSWER',
-        text: text
+        text: text,
       }
     },
     toggleAnswer: function(text){
       return {
         actionType: 'TOGGLE_ANSWER',
-        text: text
+        text: text,
       }
     },
     nextQuestion: function() {

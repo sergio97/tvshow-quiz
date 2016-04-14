@@ -16,7 +16,7 @@ var StrExactAnswer = React.createClass({
                onChange={this.onChangeHandler} />
       </div>
     );
-  }
+  },
 });
 
 module.exports = StrExactAnswer

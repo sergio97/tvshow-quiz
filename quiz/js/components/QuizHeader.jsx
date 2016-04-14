@@ -8,7 +8,7 @@ var QuizHeader = React.createClass({
         <h2>TV Show Quiz</h2>
       </div>
     );
-  }
+  },
 });
 
 module.exports = QuizHeader;

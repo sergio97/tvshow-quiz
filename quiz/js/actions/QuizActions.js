@@ -15,7 +15,7 @@ var QuizActions = mcFly.createActions({
     submitQuiz: function(question_data) {
       return {
         actionType: 'SUBMIT_QUIZ',
-        question_data: question_data
+        question_data: question_data,
       };
     },
 });

@@ -19,7 +19,7 @@ var MCAnswer = React.createClass({
         <label onClick={this.onClickHandler}> {this.props.text}</label>
       </div>
     );
-  }
+  },
 });
 
 var MCSingleAnswer = React.createClass({
@@ -40,7 +40,7 @@ var MCSingleAnswer = React.createClass({
           {option_components}
       </div>
     );
-  }
+  },
 });
 
 module.exports = MCSingleAnswer

@@ -73,7 +73,7 @@ var QuizWelcome = React.createClass({
         {answers_section}
       </div>
     );
-  }
+  },
 });
 
 

@@ -49,7 +49,7 @@ var QuizPager = React.createClass({
         </Pager>
       </div>
     );
-  }
+  },
 });
 
 module.exports = QuizPager;
