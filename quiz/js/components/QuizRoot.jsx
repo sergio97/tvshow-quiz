@@ -21,7 +21,7 @@ var QuizRoot = React.createClass({
       quiz_state: QuizStore.getQuizState()
     })
   },
-  get_components_for_state: function(state) {
+  getComponentsForState: function(state) {
     if (state === 'init') {
       return (
         <QuizWelcome />
@@ -46,7 +46,7 @@ var QuizRoot = React.createClass({
     }
   },
   render: function() {
-    var components = this.get_components_for_state(this.state.quiz_state);
+    var components = this.getComponentsForState(this.state.quiz_state);
 
     return (
       <div className="container">

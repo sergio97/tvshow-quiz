@@ -13,8 +13,8 @@ function getAnswerClass(answer_format) {
       return require('./MCMultiAnswer.jsx');
     // case 'truefalse':
     //   return require('./TrueFalseAnswer.jsx');
-    // case 'str_exact':
-    //   return require('./StrExactAnswer.jsx');
+    case 'str_exact':
+      return require('./StrExactAnswer.jsx');
     default:
       throw 'Unknown answer format: ' + answer_format;
   }

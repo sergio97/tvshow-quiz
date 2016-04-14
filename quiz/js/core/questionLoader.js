@@ -7,7 +7,15 @@ console.log('this is how we will get the questions:', jquery.getJSON);
 function loadQuestions() {
   return [
     {
-      text: 'Which numbers are primary?',
+      text: 'What is the female version of the word "his"',
+      hint: '',
+      answer_format: 'str_exact',
+      answer: 'her',
+      difficulty: 3,
+      current_answer: '',
+    },
+    {
+      text: 'Which numbers are primary',
       hint: 'Remember: integers only!',
       answer_format: 'mc_multi',
       options: [

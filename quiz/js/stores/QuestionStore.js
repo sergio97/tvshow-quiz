@@ -52,10 +52,8 @@ var QuestionStore = mcFly.createStore(
     } else if (payload_action === 'RESET') {
       var current_question = _questions[_current_question_index];
       if (current_question.current_answers) {
-        console.log('resetting MULTI question');
         current_question.current_answers = [];
       } else {
-        console.log('resetting SINGLE question');
         setCurrentAnswer('');
       }
       update_required = true;
@@ -63,16 +61,12 @@ var QuestionStore = mcFly.createStore(
       toggleAnswer(payload.text);
       update_required = true;
     } else if (payload_action === 'NEXT_QUESTION') {
-      if (_questions[_current_question_index + 1] === undefined) {
-        // console.log('NEXT_QUESTOIN fired but already on final question');
-      } else {
+      if (_questions[_current_question_index + 1] !== undefined) {
         _current_question_index += 1;
         update_required = true;
       }
     } else if (payload_action === 'PREV_QUESTION') {
-      if (_current_question_index === 0) {
-        // console.log('PREV_QUESTION fired but already on first question');
-      } else {
+      if (_current_question_index !== 0) {
         _current_question_index -= 1;
         update_required = true;
       }

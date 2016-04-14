@@ -2,7 +2,6 @@ var mcFly = require('../core/mcFly');
 
 var QuestionActions = mcFly.createActions({
     initializeQuestions: function(question_data) {
-      console.log('Initializing questions:', question_data);
       return {
         actionType: 'INITIALIZE_QUESTIONS',
         question_data: question_data,
