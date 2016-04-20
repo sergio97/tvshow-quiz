@@ -8,14 +8,14 @@ var QuizProgress = require('../components/QuizProgress.jsx');
 function getAnswerClass(answer_format) {
   switch (answer_format) {
     case 'mc_single':
-      return require('./MCSingleAnswer.jsx');
+      return require('./AnswerMCSingle.jsx');
     case 'mc_multi':
-      return require('./MCMultiAnswer.jsx');
+      return require('./AnswerMCMulti.jsx');
     // case 'truefalse':
     //   return require('./TrueFalseAnswer.jsx');
     case 'str_exact':
     case 'str_regex':
-      return require('./StrAnswer.jsx');
+      return require('./AnswerText.jsx');
     default:
       throw 'Unknown answer format: ' + answer_format;
   }

@@ -2,7 +2,7 @@ var React = require('react');
 var QuestionActions = require('../actions/QuestionActions');
 
 
-var StrExactAnswer = React.createClass({
+var AnswerText = React.createClass({
   onChangeHandler: function() {
     QuestionActions.setAnswer(this.refs.input.value);
   },
@@ -19,4 +19,4 @@ var StrExactAnswer = React.createClass({
   },
 });
 
-module.exports = StrExactAnswer
+module.exports = AnswerText

@@ -4,15 +4,16 @@ var QuestionActions = require('../actions/QuestionActions');
 
 var MCAnswer = React.createClass({
   onClickHandler: function() {
-    QuestionActions.toggleAnswer(this.props.text);
+    QuestionActions.setAnswer(this.props.text);
   },
   getChecked: function() {
-    return this.props.current_answers.indexOf(this.props.text) !== -1;
+    // console.log("We're checking:", this.props.text, this.props.current_answer);
+    return this.props.text == this.props.current_answer;
   },
   render: function() {
     return (
       <div>
-        <input type="checkbox"
+        <input type="radio"
                checked={this.getChecked()}
                onChange={this.onClickHandler} />
         <label onClick={this.onClickHandler}> {this.props.text}</label>
@@ -21,16 +22,16 @@ var MCAnswer = React.createClass({
   },
 });
 
-var MCMultiAnswer = React.createClass({
+var AnswerMCSingle = React.createClass({
   render: function() {
     var options = this.props.question_data.options;
-    var current_answers = this.props.question_data.current_answer;
+    var current_answer = this.props.question_data.current_answer;
 
     var option_components = options.map(function(option, index) {
       return (
           <MCAnswer key={index}
                     text={option.text}
-                    current_answers={current_answers} />
+                    current_answer={current_answer} />
       )
     });
 
@@ -42,4 +43,4 @@ var MCMultiAnswer = React.createClass({
   },
 });
 
-module.exports = MCMultiAnswer
+module.exports = AnswerMCSingle
