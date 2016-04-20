@@ -22,10 +22,18 @@ function _gradeMultiQuestion(question) {
 }
 
 function _gradeStrExactQuestion(question) {
-  if (question.answer == question.current_answer) {
+  var current_answer = question.current_answer.trim();
+  if (question.answer == current_answer) {
     return 1;
   }
   return 0;
+}
+
+function _gradeStrRegexQuestion(question) {
+  var current_answer = question.current_answer.trim();
+  var regex = new RegExp(question.answer);
+  var result = regex.exec(current_answer);
+  return result !== null;
 }
 
 function _gradeQuestion(question) {
@@ -36,6 +44,8 @@ function _gradeQuestion(question) {
       return _gradeMultiQuestion(question);
     case 'str_exact':
       return _gradeStrExactQuestion(question);
+    case 'str_regex':
+      return _gradeStrRegexQuestion(question);
     default:
       throw 'Unknown answer format:' + question.answer_format;
   }

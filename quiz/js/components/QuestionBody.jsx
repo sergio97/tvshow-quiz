@@ -14,7 +14,8 @@ function getAnswerClass(answer_format) {
     // case 'truefalse':
     //   return require('./TrueFalseAnswer.jsx');
     case 'str_exact':
-      return require('./StrExactAnswer.jsx');
+    case 'str_regex':
+      return require('./StrAnswer.jsx');
     default:
       throw 'Unknown answer format: ' + answer_format;
   }
