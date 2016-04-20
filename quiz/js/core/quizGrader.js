@@ -32,8 +32,11 @@ function _gradeStrExactQuestion(question) {
 function _gradeStrRegexQuestion(question) {
   var current_answer = question.current_answer.trim();
   var regex = new RegExp(question.answer);
-  var result = regex.exec(current_answer);
-  return result !== null;
+  var matches = regex.exec(current_answer);
+  if (matches) {
+    return 1
+  }
+  return 0
 }
 
 function _gradeQuestion(question) {
