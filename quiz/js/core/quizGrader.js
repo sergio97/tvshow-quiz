@@ -1,16 +1,5 @@
-const difficulty_multiplier = {
-  1: 1.0,
-  2: 1.41,
-  3: 1.73,
-  4: 2.24,
-  5: 2.83,
-  6: 3.6,
-  7: 4.58,
-  8: 5.83,
-  9: 7.42,
-  10: 9.43,
-};
-const final_score_multiplier = 100;
+var config = require('../config/config');
+
 
 function _gradeSingleQuestion(question) {
   if (question.answer == question.current_answer) {
@@ -21,8 +10,8 @@ function _gradeSingleQuestion(question) {
 
 function _gradeMultiQuestion(question) {
   let result = 0;
-  let answers = question.answers;
-  for (let current_answer of question.current_answers) {
+  let answers = question.answer;
+  for (let current_answer of question.current_answer) {
     if (answers.indexOf(current_answer) !== -1) {
       result += (1 / answers.length);
     } else {
@@ -60,7 +49,7 @@ function gradeQuiz(questions) {
     let question = questions[index];
     let score = _gradeQuestion(question)
     let difficulty = question.difficulty;
-    let weighted_score = score * difficulty_multiplier[difficulty];
+    let weighted_score = score * config.difficulty_multiplier[difficulty];
 
     total_score += weighted_score;
 
@@ -90,7 +79,7 @@ function gradeQuiz(questions) {
     }
   }
 
-  total_score *= final_score_multiplier;
+  total_score *= config.final_score_multiplier;
   total_score = parseInt(total_score);
 
   return {

@@ -24,7 +24,7 @@ var MCAnswer = React.createClass({
 var MCMultiAnswer = React.createClass({
   render: function() {
     var options = this.props.question_data.options;
-    var current_answers = this.props.question_data.current_answers;
+    var current_answers = this.props.question_data.current_answer;
 
     var option_components = options.map(function(option, index) {
       return (

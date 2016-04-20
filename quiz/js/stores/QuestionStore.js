@@ -10,12 +10,21 @@ function setCurrentAnswer(text) {
 }
 
 function toggleAnswer(text) {
-  var current_answers = _questions[_current_question_index].current_answers;
+  var current_answers = _questions[_current_question_index].current_answer;
   var index = current_answers.indexOf(text);
   if (index === -1) {
     current_answers.push(text);
   } else {
     current_answers.splice(index, 1);
+  }
+}
+
+function resetAnswer() {
+  var current_question = _questions[_current_question_index];
+  if (current_question.answer_format === "mc_multi") {
+    current_question.current_answer = [];
+  } else {
+    setCurrentAnswer('');
   }
 }
 
@@ -50,12 +59,7 @@ var QuestionStore = mcFly.createStore(
       setCurrentAnswer(payload.text);
       update_required = true;
     } else if (payload_action === 'RESET') {
-      var current_question = _questions[_current_question_index];
-      if (current_question.current_answers) {
-        current_question.current_answers = [];
-      } else {
-        setCurrentAnswer('');
-      }
+      resetAnswer();
       update_required = true;
     } else if (payload_action === 'TOGGLE_ANSWER') {
       toggleAnswer(payload.text);
