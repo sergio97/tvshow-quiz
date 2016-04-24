@@ -12,7 +12,7 @@ const config = {
     10: 9.43,
   },
   final_score_multiplier: 100,
-  question_api_url: 'http://0.0.0.0:8000/api/question',
+  question_api_url: 'http://127.0.0.1:8000/api/question',
 };
 
 module.exports = config;
