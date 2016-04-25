@@ -21,7 +21,7 @@ function toggleAnswer(text) {
 
 function resetAnswer() {
   var current_question = _questions[_current_question_index];
-  if (current_question.answer_format === "mc_multi") {
+  if (current_question.answer_format === 'mc_multi') {
     current_question.current_answer = [];
   } else {
     setCurrentAnswer('');

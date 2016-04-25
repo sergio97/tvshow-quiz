@@ -6,7 +6,6 @@ if (process.versions.node.substring(0, 4) == "0.10") {
 var path = require("path");
 
 
-
 module.exports = {
   entry: "./quiz/js/main.jsx",
   output: {

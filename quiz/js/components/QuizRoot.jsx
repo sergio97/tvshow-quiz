@@ -28,7 +28,7 @@ var QuizRoot = React.createClass({
       );
     } else if (state === 'loading') {
       return (
-        <h2>Loading...</h2>
+        <h2>Loading questions...</h2>
       );
     } else if (state === 'in-progress') {
       return (
