@@ -1,9 +1,25 @@
 var jquery = require('jquery');
+var lodash = require('lodash');
 var config = require('../config/config')
 
 
-function loadQuestions(callback) {
-  // return [
+function _create_query_string(object) {
+  // Create query string from the keys and values of object
+
+  let params = [];
+  for (let key in object) {
+      let value = object[key];
+      if (lodash.isArray(value)) {
+        value = value.join(',');
+      }
+      params.push(`${key}=${value}`)
+    }
+  return params.join('&');
+}
+
+
+function loadQuestions(quiz_config, callback) {
+  // var example_questions = [
   //   {
   //     text: 'What is the female version of the word "his"',
   //     hint: '',
@@ -40,6 +56,10 @@ function loadQuestions(callback) {
   //   },
   // ];
   var url = config.question_api_url;
+  if (!lodash.isEmpty(quiz_config)) {
+    url += '?' + _create_query_string(quiz_config)
+  }
+
   jquery.getJSON(url, callback)
 }
 

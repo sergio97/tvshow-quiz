@@ -39,11 +39,9 @@ var QuizStore = mcFly.createStore(
   function(payload){
     var payload_action = payload.actionType;
     if (payload_action === 'LOAD_QUIZ') {
-
-
-      var quiz_config = payload_action.quiz_config;
+      var quiz_config = payload.quiz_config;
       _quiz_state =  'loading';
-      questionLoader.loadQuestions(_loadQuestionsCallback);
+      questionLoader.loadQuestions(quiz_config, _loadQuestionsCallback);
     } else if (payload_action === 'START_QUIZ') {
       _quiz_state = 'in-progress';
     } else if (payload_action === 'SUBMIT_QUIZ') {

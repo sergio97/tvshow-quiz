@@ -22,7 +22,7 @@ function _gradeMultiQuestion(question) {
 }
 
 function _gradeStrExactQuestion(question) {
-  var current_answer = question.current_answer.trim();
+  var current_answer = question.current_answer.trim().toLowerCase();
   if (question.answer == current_answer) {
     return 1;
   }
@@ -30,7 +30,7 @@ function _gradeStrExactQuestion(question) {
 }
 
 function _gradeStrRegexQuestion(question) {
-  var current_answer = question.current_answer.trim();
+  var current_answer = question.current_answer.trim().toLowerCase();
   var regex = new RegExp(question.answer);
   var matches = regex.exec(current_answer);
   if (matches) {
@@ -62,11 +62,11 @@ function gradeQuiz(questions) {
     let question = questions[index];
     let score = _gradeQuestion(question)
     let difficulty = question.difficulty;
-    let weighted_score = score * config.difficulty_multiplier[difficulty];
+    let multiplier = config.score_difficulty_multipliers[difficulty]
+    let weighted_score = score * multiplier;
 
     total_score += weighted_score;
 
-    // console.log('correctness:', parseFloat(correct));
     let display_index = index + 1;
     if (score === 1) {
       answers.push({
@@ -92,7 +92,7 @@ function gradeQuiz(questions) {
     }
   }
 
-  total_score *= config.final_score_multiplier;
+  total_score *= config.score_final_multiplier;
   total_score = parseInt(total_score);
 
   return {
