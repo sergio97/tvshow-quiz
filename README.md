@@ -6,6 +6,7 @@ Installation
 
 1. Install Node.js and npm `sudo apt-get install npm`
 1. Download the packages needed by this project `npm install`
+1. (optional) Install webpack globally `sudo npm install webpack -g`
 
 
 Usage
@@ -14,6 +15,11 @@ Usage
 1. Transform/bundle all the stuff `webpack`
 1. This should produce quiz/bundle.js. Now open index.html in a browser
 
+
+Alternative Usage
+=================
+
+`nodejs node_modules/webpack/bin/webpack.js`
 
 
 Authors
