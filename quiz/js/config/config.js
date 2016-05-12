@@ -17,7 +17,7 @@ const config = {
   customize_seasons_default: [1, 2, 3],
   customize_difficulty_default: 4,
 
-  question_api_url: 'http://127.0.0.1:8000/api/question',
+  question_api_url: 'api/question',
 };
 
 module.exports = config;
