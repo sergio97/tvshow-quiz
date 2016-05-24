@@ -30,11 +30,6 @@ module.exports = {
           presets: ['es2015', 'react'],
         },
       },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loaders: ["style", "css"],
-      },
     ],
   },
 };
