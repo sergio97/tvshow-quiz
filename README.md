@@ -14,7 +14,7 @@ Usage
 =====
 
 1. Transform/bundle all the stuff `webpack`
-1. This should produce quiz/bundle.js. Now open index.html in a browser
+1. This should produce a `dist` directory. Now open dist/index.html in your browser
 
 
 Alternative Installation/Usage

@@ -9,7 +9,7 @@ var path = require("path");
 module.exports = {
   entry: "./quiz/js/main.jsx",
   output: {
-    path: path.join(__dirname, "quiz"),
+    path: path.join(__dirname, "dist"),
     filename: "bundle.js",
   },
   module: {
