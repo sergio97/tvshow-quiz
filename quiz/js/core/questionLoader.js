@@ -1,6 +1,6 @@
 var jquery = require('jquery');
 var lodash = require('lodash');
-var config = require('../config/config')
+var api_url = __QUIZ_CONFIG__.question_api_url // eslint-disable-line no-undef
 
 
 function _create_query_string(object) {
@@ -55,12 +55,11 @@ function loadQuestions(quiz_config, callback) {
   //     difficulty: 2,
   //   },
   // ];
-  var url = config.question_api_url;
   if (!lodash.isEmpty(quiz_config)) {
-    url += '?' + _create_query_string(quiz_config)
+    api_url += '?' + _create_query_string(quiz_config)
   }
 
-  jquery.getJSON(url, callback)
+  jquery.getJSON(api_url, callback)
 }
 
 module.exports = {

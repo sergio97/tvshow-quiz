@@ -7,16 +7,18 @@ var Panel = require('react-bootstrap/lib/Panel');
 var FormGroup = require('react-bootstrap/lib/FormGroup');
 var Col = require('react-bootstrap/lib/Col');
 
-var config = require('../config/config');
-
 var QuizActions = require('../actions/QuizActions');
+
+var default_difficulty = __QUIZ_CONFIG__.customize_difficulty_default; // eslint-disable-line no-undef
+var default_seasons = __QUIZ_CONFIG__.customize_seasons_default; // eslint-disable-line no-undef
+var season_count = __QUIZ_CONFIG__.customize_season_count; // eslint-disable-line no-undef
 
 
 var QuizWelcome = React.createClass({
   getInitialState: function() {
       return {
-        difficulty: config.customize_difficulty_default,
-        seasons: lodash.clone(config.customize_seasons_default),
+        difficulty: default_difficulty,
+        seasons: default_seasons,
       };
   },
   resetCustomization: function() {
@@ -46,7 +48,7 @@ var QuizWelcome = React.createClass({
   render: function() {
     var self = this;
 
-    var seasons = config.customize_season_count;
+    var seasons = season_count;
     var season_checkboxes = lodash.range(1, seasons + 1).map(function(season) {
       let onSeasonCheckboxClicked = function() {
         self.toggleSeason(season);

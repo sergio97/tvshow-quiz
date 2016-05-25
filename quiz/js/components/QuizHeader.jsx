@@ -5,7 +5,7 @@ var QuizHeader = React.createClass({
   render: function() {
     return (
       <div className="jumbotron">
-        <h2>TV Show Quiz</h2>
+        <h2>{this.props.title}</h2>
       </div>
     );
   },

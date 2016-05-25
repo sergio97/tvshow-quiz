@@ -1,4 +1,5 @@
-var config = require('../config/config');
+var difficulty_multipliers = __QUIZ_CONFIG__.score_difficulty_multipliers // eslint-disable-line no-undef
+var final_multiplier = __QUIZ_CONFIG__.score_final_multiplier // eslint-disable-line no-undef
 
 
 function _gradeSingleQuestion(question) {
@@ -62,7 +63,7 @@ function gradeQuiz(questions) {
     let question = questions[index];
     let score = _gradeQuestion(question)
     let difficulty = question.difficulty;
-    let multiplier = config.score_difficulty_multipliers[difficulty]
+    let multiplier = difficulty_multipliers[difficulty]
     let weighted_score = score * multiplier;
 
     total_score += weighted_score;
@@ -92,7 +93,7 @@ function gradeQuiz(questions) {
     }
   }
 
-  total_score *= config.score_final_multiplier;
+  total_score *= final_multiplier;
   total_score = parseInt(total_score);
 
   return {

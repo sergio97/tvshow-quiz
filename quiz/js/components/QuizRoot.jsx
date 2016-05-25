@@ -46,11 +46,11 @@ var QuizRoot = React.createClass({
     }
   },
   render: function() {
+    var quiz_title = __QUIZ_CONFIG__.quiz_title; // eslint-disable-line no-undef
     var components = this.getComponentsForState(this.state.quiz_state);
-
     return (
       <div className="container">
-        <QuizHeader />
+        <QuizHeader title={quiz_title}/>
         {components}
       </div>
     );
