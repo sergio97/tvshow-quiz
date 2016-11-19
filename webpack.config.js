@@ -33,16 +33,16 @@ for (var key in quiz_config) {
 
 
 module.exports = {
-  entry: "./quiz/js/main.jsx",
+  entry: "./quizmaster/js/main.jsx",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "questionmaster/static/"),
     filename: "bundle.js",
   },
   module: {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        include: path.join(__dirname, "quiz"),
+        include: path.join(__dirname, "quizmaster"),
         exclude: /bundle\.js$/,
         loader: "eslint",
       },

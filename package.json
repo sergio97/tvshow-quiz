@@ -7,7 +7,8 @@
   "license": "GPLv3",
   "scripts": {
     "lint": "eslint --ignore-pattern **/bundle.js quiz/ --ext .js,.jsx || true",
-    "clean": "rm -f quiz/bundle.js"
+    "clean": "rm -f quizmaster/static/",
+    "webpack": "nodejs node_modules/webpack/bin/webpack.js"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",

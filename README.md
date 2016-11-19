@@ -1,33 +1,40 @@
 This is early work-in-progress. Expect rough edges
 
+This repo contains 2 projects:
+* QuestionMaster lets you manage and access a collection of quiz questions stored in a database
+* QuizMaster is a web application for displaying quiz questions and scoring the user's answers
 
-Installation
-============
+
+QuizMaster Installation
+=======================
 
 1. Install Node.js and npm `sudo apt-get install npm`
 1. Download the packages needed by this project `npm install`
-1. Set up an alias for webpack `echo alias webpack="nodejs node_modules/webpack/bin/webpack.js" >> ~/.bashrc`. If you don't want to do this, see the alternative install section below.
-1. Reload .bashrc `source ~/.bashrc`
 
 
-Usage
-=====
+QuestionMaster Installation
+===========================
 
-1. Transform/bundle all the stuff `webpack`
-1. This should produce a `dist` directory. Now open dist/index.html in your browser
+1. Install python3-dev and pyvenv `sudo apt-get install python3-dev python3-venv`
+1. Create a virtualenv and activate it `pyvenv venv; source venv/bin/activate`
+1. Install deps `python setup.py install`
 
 
-Alternative Installation/Usage
-==============================
+QuizMaster Usage
+================
 
-If you don't want to add an alias for webpack, do 1 of these instead:
+1. Transform/bundle all the stuff `npm run-script webpack`
+1. This generates all the HTML/CSS/JS files that QuestionMaster can now host
 
-* Install webpack globally `sudo apt-get install nodejs-legacy && sudo npm install webpack -g`
-* Run the full command each time`nodejs node_modules/webpack/bin/webpack.js`
+
+QuestionMaster Usage
+====================
+
+1. `./launch_dev_server.sh`
+1. open your browser to 127.0.0.1:8000
 
 
 Authors
 =======
 
-Sergio Martins <sergio97@gmail.com>
-
+Sergio Martins

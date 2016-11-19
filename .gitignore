@@ -1,4 +1,12 @@
-quiz/bundle.js
-node_modules/
+*.pyc
+*.egg-info
+__pycache__/
+venv/
+build/
 dist/
+questionmaster/static/
+
+*.sqlite
+
+node_modules/
 quiz_config.json
