@@ -23,7 +23,7 @@ QuestionMaster Installation
 QuizMaster Usage
 ================
 
-1. Transform/bundle all the stuff `npm run-script webpack`
+1. Transform/bundle all the stuff `npm run webpack`
 1. This generates all the HTML/CSS/JS files that QuestionMaster can now host
 
 

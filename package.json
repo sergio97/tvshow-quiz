@@ -7,7 +7,7 @@
   "license": "GPLv3",
   "scripts": {
     "lint": "eslint --ignore-pattern **/bundle.js quiz/ --ext .js,.jsx || true",
-    "clean": "rm -f quizmaster/static/",
+    "clean": "rm -f quizmaster/static/; find . -name '*.pyc' -delete",
     "webpack": "nodejs node_modules/webpack/bin/webpack.js"
   },
   "devDependencies": {
