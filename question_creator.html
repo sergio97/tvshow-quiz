@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta content="text/html" charset="utf-8" http-equiv="content-type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Question Creator</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function array_to_object(array) {
+            var result = {};
+            $.each(array, function(_, kv) {
+              result[kv.name] = kv.value;
+            });
+            return result;
+        }
+
+        function form_to_output(form_array) {
+            var form_data = array_to_object(form_array);
+            form_data.difficulty = parseInt(form_data.difficulty, 10)
+            return JSON.stringify(form_data, null, 4) + ",";
+        }
+
+        $(document).ready(function() {
+            $('form').on("change", function() {
+                var output = form_to_output($('form').serializeArray());
+                $('#output').text(output);
+            });
+            $('#output').on("focus", function() {
+                $(this).select();
+            })
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Question Creater</h1>
+        <form>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="row">
+                        <label for="text" class="col-sm-2 control-label">Text</label>
+                        <div class="col col-md-9">
+                                <input type="text" class="form-control" name="text" id="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="hint" class="col-sm-2 control-label">Hint</label>
+                        <div class="col col-md-9">
+                                <input type="text" class="form-control" name="hint" id="hint" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="answer_format" class="col-sm-2 control-label">Answer Format</label>
+                        <div class="col col-md-9">
+                                <select class="form-control" name="answer_format" id="answer_format">
+                                    <option>mc_single</option>
+                                    <option>mc_multi</option>
+                                    <option>str_regex</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="difficulty" class="col-sm-2 control-label">Difficulty</label>
+                        <div class="col col-md-2">
+                                <input type="text" class="form-control" name="difficulty" id="difficulty" pattern="[1-9]|10" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="episode" class="col-sm-2 control-label">Episode</label>
+                        <div class="col col-md-2">
+                                <input type="text" class="form-control" name="episode" id="episode" value="S01E02" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="author" class="col-sm-2 control-label">Author</label>
+                        <div class="col col-md-3">
+                                <input type="text" class="form-control" name="author" id="author" value="Sergio Martins" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="question_format" class="col-sm-2 control-label">Question Format</label>
+                        <div class="col col-md-3">
+                                <input type="text" class="form-control" name="question_format" id="question_format" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col col-md-10">
+                <textarea class="pre-scrollable" id="output" rows="20" cols="90%">{}</textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
