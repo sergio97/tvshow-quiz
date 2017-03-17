@@ -9,6 +9,10 @@
             integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
             crossorigin="anonymous"></script>
 
+    <style>
+
+    </style>
+
     <script type="text/javascript">
         function array_to_object(array) {
             var result = {};
@@ -24,12 +28,34 @@
             return JSON.stringify(form_data, null, 4) + ",";
         }
 
+        function disable_hidden_fields() {
+            // var input_fields = $('input, select');
+            // input_fields.each(function() {
+            //     let element = $(this);
+            //     if (element.is(':hidden')) {
+            //         element.attr('disabled', 'disabled');
+            //     } else {
+            //         element.removeAttr('disabled');
+            //     }
+            // })
+            $('input, select')
+        }
+
+        function handle_form_changes() {
+            disable_hidden_fields()
+            var output = form_to_output($('form').serializeArray());
+            $('#output').text(output);
+        }
+
+        function handle_answer_format_change() {
+            console.log("Change things!");
+        }
+
         $(document).ready(function() {
-            $('form').on("change", function() {
-                var output = form_to_output($('form').serializeArray());
-                $('#output').text(output);
-            });
-            $('#output').on("focus", function() {
+            handle_form_changes();
+            $('form').on('change', handle_form_changes);
+            $('#answer_format').on('change', handle_answer_format_change);
+            $('#output').on('focus', function() {
                 $(this).select();
             })
         });
@@ -39,13 +65,16 @@
 <body>
     <div class="container-fluid">
         <h1>Question Creater</h1>
+        <div class="row">
+            <input class="col col-xs-12" type="text" placeholder="notes">
+        </div>
         <form>
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="row">
                         <label for="text" class="col-sm-2 control-label">Text</label>
                         <div class="col col-md-9">
-                                <input type="text" class="form-control" name="text" id="text" />
+                            <input type="text" class="form-control" name="text" id="text" />
                         </div>
                     </div>
                 </div>
@@ -53,7 +82,7 @@
                     <div class="row">
                         <label for="hint" class="col-sm-2 control-label">Hint</label>
                         <div class="col col-md-9">
-                                <input type="text" class="form-control" name="hint" id="hint" />
+                            <input type="text" class="form-control" name="hint" id="hint" />
                         </div>
                     </div>
                 </div>
@@ -61,19 +90,75 @@
                     <div class="row">
                         <label for="answer_format" class="col-sm-2 control-label">Answer Format</label>
                         <div class="col col-md-9">
-                                <select class="form-control" name="answer_format" id="answer_format">
-                                    <option>mc_single</option>
-                                    <option>mc_multi</option>
-                                    <option>str_regex</option>
-                                </select>
+                            <select class="form-control" name="answer_format" id="answer_format">
+                                <option>mc_single</option>
+                                <option>mc_multi</option>
+                                <option>str_regex</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+                <div class="form-group" name="answer-format">
+                    <!-- <label for="answer-mc_single" class="col-sm-2">Options</label> -->
+                    <!-- <button class="btn btn-default" id="options-add">Add</button> -->
+                    <!-- <button class="btn btn-default" id="options-remove">Remove last</button> -->
+                    <div name="answers-mc_single" id="answers-mc_single">
+                        <div class="row">
+                            <label for="answer_1" class="col-md-offset-2 col-sm-1 control-label">Answer 1</label>
+                            <div class="col col-md-6">
+                                <input type="text"
+                                       class="form-control"
+                                       name="answer_1"
+                                       id="answer_1"
+                                       hint="potential answer" />
+                            </div>
+                            <div class="col col-md-1">
+                                <input type="radio" class="form-control" name="answer_correct" />
+                                <label for="answer-1-option">Correct</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-6 col-md-offset-2">
+                                <input type="text"
+                                       class="form-control"
+                                       name="answer_2"
+                                       id="answer_2"
+                                       hint="potential answer" />
+                            </div>
+                            <div class="col col-md-2">
+                                <input type="radio" class="form-control" name="answer_correct" />
+                                <label>Correct</label>
+                            </div>
+                        </div>
+                    </div>
+<!--
+                    <div name="answer-mc_multi">
+                        <div class="row">
+                            <div class="col col-md-2">
+                                    <input type="text" class="form-control" name="answer-multi" id="answer-multi" hint="" />
+                            </div>
+                        </div>
+                    </div>
+ -->
+                    <div name="answers-str_regex">
+                        <div class="row">
+                            <label for="answer-regex" class="col-sm-2 control-label">Regex</label>
+                            <div class="col col-md-2">
+                                <input type="text" class="form-control" name="answer-regex" id="answer-regex" pattern="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="form-group">
                     <div class="row">
                         <label for="difficulty" class="col-sm-2 control-label">Difficulty</label>
                         <div class="col col-md-2">
-                                <input type="text" class="form-control" name="difficulty" id="difficulty" pattern="[1-9]|10" />
+                                <input type="text" class="form-control" name="difficulty" id="difficulty" />
                         </div>
                     </div>
                 </div>
@@ -105,7 +190,7 @@
         </form>
         <div class="row">
             <div class="col col-md-10">
-                <textarea class="pre-scrollable" id="output" rows="20" cols="90%">{}</textarea>
+                <textarea class="pre-scrollable" id="output" rows="10" cols="90%">{}</textarea>
             </div>
         </div>
     </div>
