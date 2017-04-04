@@ -45,8 +45,23 @@
             $('#output').text(output);
         }
 
-        function handle_answer_format_change() {
-            console.log("Change things!");
+        function handle_answer_format_change(component) {
+            if (component.value === "mc_single") {
+                console.log("Showing mc_single")
+                $("#answers-mc_single").show()
+                $("#answers-mc_multi").hide()
+                $("#answers-str_regex").hide()
+            } else if (component.value === "mc_multi") {
+                console.log("Showing mc_multi")
+                $("#answers-mc_single").hide()
+                $("#answers-mc_multi").show()
+                $("#answers-str_regex").hide()
+            } else if (component.value === "str_regex") {
+                console.log("Showing str_regex")
+                $("#answers-mc_single").hide()
+                $("#answers-mc_multi").hide()
+                $("#answers-str_regex").show()
+            }
         }
 
         $(document).ready(function() {
@@ -96,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" name="answer-format">
+                <div class="form-group answers">
                     <!-- <label for="answer-mc_single" class="col-sm-2">Options</label> -->
                     <!-- <button class="btn btn-default" id="options-add">Add</button> -->
                     <!-- <button class="btn btn-default" id="options-remove">Remove last</button> -->

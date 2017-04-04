@@ -1,11 +1,13 @@
-#answers-mc_single {
+/*
+.answers #answers-mc_single {
     display: none;
 }
 
-#answers-mc_multi {
+.answers #answers-mc_multi {
     display: none;
 }
 
-#answers-str_regex {
+.answers #answers-str_regex {
     display: none;
 }
+*/
