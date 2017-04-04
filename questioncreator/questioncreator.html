@@ -9,9 +9,7 @@
             integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
             crossorigin="anonymous"></script>
 
-    <style>
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="questioncreator.css"/>
 
     <script type="text/javascript">
         function array_to_object(array) {
@@ -42,7 +40,7 @@
         }
 
         function handle_form_changes() {
-            disable_hidden_fields()
+            // disable_hidden_fields()
             var output = form_to_output($('form').serializeArray());
             $('#output').text(output);
         }
@@ -131,16 +129,16 @@
                             </div>
                         </div>
                     </div>
-<!--
-                    <div name="answer-mc_multi">
+
+                    <div name="answers-mc_multi" id="answers-mc_multi">
                         <div class="row">
                             <div class="col col-md-2">
                                     <input type="text" class="form-control" name="answer-multi" id="answer-multi" hint="" />
                             </div>
                         </div>
                     </div>
- -->
-                    <div name="answers-str_regex">
+
+                    <div name="answers-str_regex" id="answers-str_regex">
                         <div class="row">
                             <label for="answer-regex" class="col-sm-2 control-label">Regex</label>
                             <div class="col col-md-2">
